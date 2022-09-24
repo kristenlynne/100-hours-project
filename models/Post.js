@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
-  title: {
+  bookTitle: {
     type: String,
     required: true,
   },
@@ -24,6 +24,12 @@ const PostSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  genres: {
+    type: Array,
+  },
+  bookDescription: {
+    type: String,
   },
   createdAt: {
     type: Date,
