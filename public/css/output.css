@@ -1386,9 +1386,22 @@ html {
   line-height: 1em;
 }
 
+.input-bordered {
+  --tw-border-opacity: 0.2;
+}
+
 .input:focus {
   outline: 2px solid hsla(var(--bc) / 0.2);
   outline-offset: 2px;
+}
+
+.input-secondary {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--s) / var(--tw-border-opacity));
+}
+
+.input-secondary:focus {
+  outline: 2px solid hsl(var(--s));
 }
 
 .input-disabled, 
@@ -1713,6 +1726,10 @@ html {
   }
 }
 
+.btn-wide {
+  width: 16rem;
+}
+
 .btn-group .btn:not(:first-child):not(:last-child), .btn-group.btn-group-horizontal .btn:not(:first-child):not(:last-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -1801,12 +1818,20 @@ html {
   display: none;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-xs {
+  max-width: 20rem;
 }
 
 .flex-col {
@@ -1857,6 +1882,19 @@ html {
   align-self: flex-end;
 }
 
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1876,6 +1914,14 @@ html {
   padding-bottom: 2rem;
 }
 
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -1889,8 +1935,17 @@ html {
   line-height: 2.5rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .font-bold {
   font-weight: 700;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .focus\:outline-none:focus {
