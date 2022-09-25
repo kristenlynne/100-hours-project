@@ -1,4 +1,4 @@
-// Todo: Prevent user from liking post more than once, need a toggle feature for the like button or an unlike function.
+// Todo: Prevent user from liking post more than once
 
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
@@ -37,11 +37,12 @@ module.exports = {
 
       await Post.create({
         bookTitle: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        // genres: idk,
-        // bookDescription: idk,
+        image: result.secure_url, // dnt
+        cloudinaryId: result.public_id, // dnt
+        caption: req.body.caption, // dnt
+        genres: req.body.genres,
+        bookDescription: req.body.bookDescription,
+        bookAuthor: req.body.bookAuthor,
         likes: 0,
         user: req.user.id,
       });
@@ -54,7 +55,7 @@ module.exports = {
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.id }, 
         {
           $inc: { likes: 1 },
         }

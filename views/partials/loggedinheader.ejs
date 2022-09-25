@@ -15,10 +15,17 @@
 
       <nav class="relative container mx-auto p-6">
         <div class="flex items-center justify-between">
-          <div class="pt-2"><a href="/">Book Club</a></div>
-          <div class="hidden md:flex space-x-3">
-            <a href="/logout" class="btn btn-primary btn-outline">Logout</a>
+          <div class="pt-2"><a href="/profile">Book Club</a></div>
+          <div class="hidden space-x-6 md:flex">
+            <a href="/feed">Feed</a>
+            <a href="/profile">My Profile</a>
+            <a href="#">Saved Books</a>
+            <a href="#">Add Post</a>
           </div>
+
+          <a href="/logout" class="btn btn-primary btn-outline">Logout</a>
+
+
           <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
             <span class="hamburger-top"></span>
             <span class="hamburger-middle"></span>
