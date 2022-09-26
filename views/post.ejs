@@ -1,10 +1,24 @@
 <%- include('partials/loggedinheader') -%>
 
-<div class="container">
+<div class="container grid-cols-1 justify-center bg-teal-200 mx-auto items-center">
+  <!-- Container that holds the image and info sections -->
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
+    <div class="flex justify-between">
+      <a href="#"><%= username %></a> <!-- TODO: add link to user profile -->
+      <%if(post.user == user.id){ %>
+        <form
+          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          method="POST"
+          class="col-3"
+        >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+        <%}%>
+    </div>
+    <!-- Image Container -->
+    <!-- To Do: Add Bookmark Post Button & Functionality -->
+    <div class="col-6 bg-green-400">
+      <img class="max-w-lg max-h-3/4 mx-auto" src="<%= post.image%>" />
       <div class="row justify-content-between">
         <form
           class="col-1"
@@ -14,39 +28,40 @@
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
+        
+        <div class="col-3 mt-5">
+          <p><%= post.caption %></p>
+        </div>
       </div>
+    <!-- Book Info Container (Title, Author, Description, Genres... Etc.) -->
+    <div class="bg-orange-500">
+      <h2 class="font-bold text-2xl"><%= post.bookTitle %></h2>
+      <h3><b>Author:</b> <%= post.bookAuthor%></h3>
+      <h4><b>Book Description:</b> <%= post.bookDescription%></h4>
+      <h4><b>Genre:</b> <%=post.genres%></h4>
     </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
-    </div>
+  </div>
+  </div> <!-- end of image and info container -->
 
+  <!-- Comments Container -->
+  <div class="bg-pink-300">   
     <ul>
       <% for(var i=0; i<comments.length; i++) {%>
-        <li class="col-6 mt-5">
-          <b><%= comments[i].createdBy %></b> &nbsp;&nbsp; <%= comments[i].comment%> &nbsp;&nbsp;
+      <li class="col-6 mt-5">
+        <b><%= comments[i].createdBy %></b> &nbsp;&nbsp; <%= comments[i].comment%> &nbsp;&nbsp;
 
-          <div class="row">
-            <form class="col-1" action="/comment/likeComment/<%= post.id %>/<%= comments[i]._id %>?_method=PUT" method="POST">
-              <button class="btn btn-primary fa fa-heart" type="submit">&nbsp;<%= comments[i].likes %></button> &nbsp;&nbsp;
+            <div class="row">
+              <form class="col-1" action="/comment/likeComment/<%= post.id %>/<%= comments[i]._id %>?_method=PUT" method="POST">
+                <button class="btn btn-primary fa fa-heart" type="submit">&nbsp;<%= comments[i].likes %></button> &nbsp;&nbsp;
+              </form>
+            </div>
+
+            <% if(comments[i].createdById == user.id) {%>
+            <form action="/comment/deleteComment/<%= post.id %>/<%= comments[i]._id %>?_method=DELETE" method="POST">
+              <button class="btn fa fa-trash" type="submit"></button>
             </form>
-          </div>
-
-          <% if(comments[i].createdById == user.id) {%>
-          <form action="/comment/deleteComment/<%= post.id %>/<%= comments[i]._id %>?_method=DELETE" method="POST">
-            <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete Comment</button>
-          </form>
-          <% } %>
-
-        </li>
+            <% } %>
+      </li>
       <% } %>
     </ul>
 
@@ -54,18 +69,20 @@
       <h2>Add a comment</h2>
       <form action="/comment/createComment/<%=post._id%>" method="POST">
         <div class="mb-3">
-            <label for="comment" class="form-label">Comment</label>
-            <input type="text" class="form-control" id="comment" name="comment">
+          <label for="comment" class="form-label">Comment</label>
+          <input type="text" class="form-control" id="comment" name="comment">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div>
+    </div> <!-- end of add comment div -->
+  </div> <!-- end of comments container -->
 
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
-    </div>
+
+  <div class="col-6 mt-5">
+    <a class="btn btn-primary" href="/profile">Return To My Profile</a>
+    <a class="btn btn-primary" href="/feed">Return to Feed</a>
   </div>
-</div>
+
+</div> <!-- end of main container div -->
 
 <%- include('partials/footer') -%>
