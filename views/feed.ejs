@@ -11,13 +11,13 @@
         <div class="flex flex-row justify-between">
           <div>
             <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
-            <a href="#comment"><i class="fa-regular fa-comment"></i></a>
+            <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
           </div>
           <a href="#"><i class="fa-regular fa-bookmark"></i></a>
         </div>
       
         <div class="mt-5">
-          <p><b><a href="#"><%= userName[i] %></a></b> <%= posts[i].caption %></p>
+          <p><b><a href="/profile/<%= userName[i]%>"><%= userName[i] %></a></b> <%= posts[i].caption %></p>
         </div>
       </div>
       <% } %>

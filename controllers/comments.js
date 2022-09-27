@@ -1,3 +1,5 @@
+// TODO: prevent user from liking comment more than once
+
 const Comment = require("../models/Comment");
 
 module.exports = {
