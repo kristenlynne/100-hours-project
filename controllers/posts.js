@@ -1,5 +1,3 @@
-// Todo: Prevent user from liking post more than once
-
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
@@ -8,8 +6,9 @@ const User = require("../models/User");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const user = await Post.find({ user: req.user.id }); // posts of logged in user
+      const posts = await Post.find({ user: req.params.userId }).populate('user').lean(); // posts by userId
+      res.render("profile.ejs", { posts, user: req.user })
     } catch (err) {
       console.log(err);
     }
