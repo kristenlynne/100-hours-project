@@ -8,7 +8,10 @@ module.exports = {
     try {
       const user = await Post.find({ user: req.user.id }); // posts of logged in user
       const posts = await Post.find({ user: req.params.userId }).populate('user').lean(); // posts by userId
-      res.render("profile.ejs", { posts, user: req.user })
+      const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
+      const username = getUserInfo.userName // gets username from user object
+      console.log(getUserInfo)
+      res.render("profile.ejs", { posts, user: req.user, username: username })
     } catch (err) {
       console.log(err);
     }
