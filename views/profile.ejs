@@ -1,31 +1,46 @@
-<!-- this goes to the logged in user's profile, will need to create profile page -->
+<!-- 
+TODO: 
+- I want the images to get larger or smaller with screen size... need to figure out how to implement this.
+- need to add edit my profile button so user can add profile picture and caption to their profile
+--- caption will need to have a word count limit to it
+- need to write function to get number of posts user has and display it in DOM
+- need to create followers / following functions (will implement this after MVP) 
+-->
+
 <%- include('partials/loggedinheader') -%>
 
-<div class="container">
-  <div class="row mt-5">
+<div class="container mx-auto">
 
-    <div class="col-6">
-      <div>
-          <p><strong>User Name</strong>: <%= username %></p>
-          <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
+    <div class="flex flex-row mx-auto mb-8 py-5 justify-center border-b-2 border-gray-700">
+      <div class="text-7xl"><i class="fa-solid fa-circle-user"></i></div>
+      <div class="pl-8">
+          <h3 class="font-bold"><%= username %></h3>
+          <ul class="flex flex-row">
+            <li class="pr-8">18 posts</li>
+            <li class="pr-8">8 followers</li>
+            <li>35 following</li>
+          </ul>
+          <p>lorem ipsum dolar i am a caption the user will add to their profile</p>
       </div>
     </div>
 
-      <div class="col-6">
-        <ul class="row list-unstyled">
+      <!-- <div class="container my-6 flex flex-row flex-wrap bg-fuchsia-300"> -->
+      <div class="grid grid-cols-3 mx-auto">
+
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
+          <div class="mx-auto mb-4">
             <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+              <img class="w-72 max-h-72 xl:w-96 xl:max-h-96 object-cover" src="<%= posts[i].image%>">
             </a>
-          </li>
+          </div>
         <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed"> Back to Feed</a>
-        </div>  
+
+      </div> 
+
+      <div class="flex justify-center mt-5">
+        <a class="btn btn-primary" href="/feed"> Back to Feed</a>
       </div>  
-    </div>
-  </div>
-</div>
+
+</div> 
+
 <%- include('partials/footer') -%>

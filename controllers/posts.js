@@ -6,8 +6,8 @@ const User = require("../models/User");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const user = await Post.find({ user: req.user.id }); // posts of logged in user
-      const posts = await Post.find({ user: req.params.userId }).populate('user').lean(); // posts by userId
+      const user = await Post.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean(); // posts of logged in user
+      const posts = await Post.find({ user: req.params.userId }).populate('user').sort({ createdAt: "desc" }).lean(); // posts by userId
       const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
       const username = getUserInfo.userName // gets username from user object
       console.log(getUserInfo)
