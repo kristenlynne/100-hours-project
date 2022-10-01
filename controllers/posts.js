@@ -57,7 +57,8 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      // res.render("addpost.ejs")
+      res.redirect(`/profile/user/${req.user.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -88,6 +89,16 @@ module.exports = {
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
+    }
+  },
+  getAddPost: async (req, res) => {
+    try {
+      const user = await Post.find({ user: req.user.id }); // posts of logged in user
+      // const posts = await Post.find({ user: req.params.userId }).populate('user').sort({ createdAt: "desc" }).lean(); // posts by userId
+      // const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
+      res.render("addpost.ejs", { user: req.user })
+    } catch (err) {
+      console.log(err)
     }
   },
 };

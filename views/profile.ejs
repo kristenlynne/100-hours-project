@@ -7,6 +7,11 @@ TODO:
 - need to create followers / following functions (will implement this after MVP) 
 -->
 
+<!-- 
+BUG:
+- when looking at profile of other users (not the logged in user) the image size is not being adjusted properly, it should be a square but it's like the classes aren't working... when logged into that user it does the same thing... so idk man. bizarre...
+-->
+
 <%- include('partials/loggedinheader') -%>
 
 <div class="container mx-auto">
@@ -24,7 +29,6 @@ TODO:
       </div>
     </div>
 
-      <!-- <div class="container my-6 flex flex-row flex-wrap bg-fuchsia-300"> -->
       <div class="grid grid-cols-3 mx-auto">
 
         <% for(var i=0; i<posts.length; i++) {%>
