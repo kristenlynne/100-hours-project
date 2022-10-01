@@ -1,42 +1,53 @@
 <%- include('partials/loggedinheader') -%>
 
-<div class="mt-5">
-  <h2>Add a post</h2>
-  <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-    
-    <div class="mb-3">
-        <label for="title" class="form-label">Book Title</label>
-        <input type="text" class="form-control" id="title" name="title">
-    </div>
+<div class="">
+  <div class="container mx-auto w-1/2 flex flex-col justify-center px-8 pb-8 rounded-lg my-8 bg-base-200">
+    <h1 class="font-bold text-4xl text-center my-6">Add a New Post</h1>
 
-    <div class="mb-3">
-      <label for="bookAuthor" class="form-label">Author</label>
-      <textarea class="form-control" id="bookAuthor" name="bookAuthor"></textarea>
-    </div>
-
-    <div class="mb-3">
-      <label for="bookDescription" class="form-label">Book Description</label>
-      <textarea class="form-control" id="bookDescription" name="bookDescription"></textarea>
-    </div>
-
-    <div class="mb-3">
-      <label for="genres" class="form-label">Genre(s)</label>
-      <textarea class="form-control" id="genres" name="genres"></textarea>
-    </div>
+    <form action="/post/createPost" enctype="multipart/form-data" method="POST" class="container w-full">
     
-    <div class="mb-3">
-      <label for="caption" class="form-label">Caption</label>
-      <textarea class="form-control" id="caption" name="caption"></textarea>
-    </div>
-    
-    <div class="mb-3">
-      <label for="imgUpload" class="form-label">Image</label>
-      <input type="file" class="form-control" id="imageUpload" name="file">
-    </div>
-    
-    <button type="submit" class="btn btn-primary" value="Upload">Add Post</button>
+      <div class="mb-3">
+          <label for="title" class="form-label">Book Title</label>
+          <input type="text" class="form-control input input-bordered input-primary w-full" id="title" name="title">
+      </div>
   
-  </form>
+      <div class="mb-3">
+        <label for="bookAuthor" class="form-label">Author</label>
+        <input type="text" class="form-control input input-bordered input-primary w-full" id="bookAuthor" name="bookAuthor"></input>
+      </div>
+  
+      <div class="mb-3">
+        <label for="bookDescription" class="form-label">Book Description</label>
+        <textarea class="form-control textarea textarea-bordered textarea-primary w-full" id="bookDescription" name="bookDescription"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="genres" class="form-label">Genre(s)</label>
+        <input class="form-control input input-bordered input-primary w-full" id="genres" name="genres"></input>
+      </div>
+      
+      <div class="mb-3">
+        <label for="caption" class="form-label">Caption</label>
+        <textarea class="form-control textarea textarea-bordered textarea-primary w-full" id="caption" name="caption"></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="imgUpload" class="form-label">Image</label>
+        <input type="file" class="form-control block w-full text-md text-gray-700
+        file:mr-4 file:py-2 file:px-4
+        file:rounded-lg file:border-0
+        file:text-sm file:font-semibold
+        file:bg-secondary file:text-secondary-content
+        hover:file:bg-secondary-focus" id="imageUpload" name="file">
+      </div>
+      
+      <div class="flex justify-center">
+        <button type="submit" class="btn btn-primary" value="Upload">Add Post</button>
+      </div>
+    
+    </form>
+  </div>
+  
 </div>
 
 <%- include('partials/footer') -%>
