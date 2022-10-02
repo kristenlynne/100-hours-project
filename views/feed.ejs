@@ -1,5 +1,5 @@
 <!-- 
-BUG: like post function not working from feed, think I need to add a likePost route to feed/likePost.
+BUG: like post function not working from feed, think I need to add a likePost route to feed/likePost..
 -->
 
 <%- include('partials/loggedinheader') -%>
@@ -14,7 +14,15 @@ BUG: like post function not working from feed, think I need to add a likePost ro
         
         <div class="flex flex-row justify-between">
           <div>
-            <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
+            <form
+              class="col-1"
+              action="/feed/likePost/<%= posts[i]._id %>?_method=PUT"
+              method="POST"
+            >
+          <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
+        </form>
+
+            <!-- <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button> -->
             <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
           </div>
           <a href="#"><i class="fa-regular fa-bookmark"></i></a>
