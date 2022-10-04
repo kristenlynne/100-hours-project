@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/imgs/logoicon.png"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="/css/output.css" rel="stylesheet">
     <title>Book Club</title>
@@ -15,12 +15,18 @@
 
       <nav class="relative container mx-auto p-6">
         <div class="flex items-center justify-between">
-          <div class="pt-2"><a href="/feed">Book Club</a></div>
+
+          <div class="pt-2 w-48 h-12">
+            <a href="/feed">
+              <img src="/imgs/cover.png" alt="Book Club Logo">
+            </a>
+          </div>
+
           <div class="hidden space-x-6 md:flex">
-            <a href="/feed">Feed</a>
-            <a href="/profile/user/<%= user.id %>">My Profile</a>
-            <a href="#">Saved Books</a>
-            <a href="/addpost">Add Post</a>
+            <a href="/feed" class="hover:font-bold hover:text-primary">Feed</a>
+            <a href="/profile/user/<%= user.id %>" class="hover:font-bold hover:text-primary">My Profile</a>
+            <a href="#" class="hover:font-bold hover:text-primary">Bookmarks</a> <!-- adding this functionality after MVP -->
+            <a href="/addpost" class="hover:font-bold hover:text-primary">Add Post</a>
           </div>
 
           <a href="/logout" class="btn btn-primary btn-outline">Logout</a>

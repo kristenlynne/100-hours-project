@@ -1,9 +1,9 @@
 <%- include('partials/loggedinheader') -%>
 
-  <div class="w-full my-6 mx-auto flex flex-row flex-wrap">
+  <div class="w-full my-8 mx-auto flex flex-row flex-wrap">
            
       <% for(var i=0; i<posts.length; i++) {%>
-        <div class="m-3 w-96 mx-auto"> 
+        <div class="my-6 w-96 mx-auto"> 
         <a href="/post/<%= posts[i]._id%>">
           <img class="w-96 h-96 object-cover" src="<%= posts[i].image%>">
         </a>
@@ -16,14 +16,14 @@
               method="POST"
             >
           <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
+          <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
         </form>
 
-            <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
           </div>
           <a href="#"><i class="fa-regular fa-bookmark"></i></a>
         </div>
       
-        <div class="mt-5">
+        <div class="mt-3">
           <p><b><a href="/profile/user/<%= posts[i].user._id %>"><%= userName[i] %></a></b> <%= posts[i].caption %></p>
         </div>
       </div>
