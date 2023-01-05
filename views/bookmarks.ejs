@@ -1,18 +1,22 @@
 <%- include('partials/loggedinheader') -%>
 
-<div class="container">
-  <h1>My Bookmarks</h1>
-  <% console.log(posts) %> 
-  <div class="">
+<div class="w-full mx-auto px-6 flex flex-col">
+  <h1 class="text-center text-2xl">My Bookmarks</h1>
+
+  <div class="w-full mx-auto py-4 flex flex-row flex-wrap">
     <% for(let i = 0; i < posts.length; i++) {%>
-      <%if(posts[i].bookmarks.includes(user.id)) {%>
-      <div class="">
-        <img src="<%= posts[i].image%>" class="" alt="...">
-        <div class="">
-          <h5 class=""><%= posts[i].bookTitle%></h5>
-          <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">View Post</a>
+      <% if (posts[i].bookmarks.includes(user.id)) {%>
+      <!-- <h5 class="text-center text-xl"><%= posts[i].bookTitle%></h5> -->
+
+      <div class="mx-auto mb-4 flex flex-col">
+        <div class="w-96 mx-auto ">
+          <img src="<%= posts[i].image%>" class="w-96 h-96 object-cover" alt="...">
         </div>
+  
+        <a href="/post/<%= posts[i]._id%>" class="btn btn-ghost">View Post</a>
       </div>
+
+
     <% } %>
     <% } %>
   </div>
