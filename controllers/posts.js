@@ -8,9 +8,12 @@ module.exports = {
     try {
       const user = await Post.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean(); // posts of logged in user
       const posts = await Post.find({ user: req.params.userId }).populate('user').sort({ createdAt: "desc" }).lean(); // posts by userId
+
+      const postCount = await Post.find({ user: req.params.userId }).countDocuments()
+
       const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
       const username = getUserInfo.userName // gets username from user object
-      res.render("profile.ejs", { posts, user: req.user, username: username })
+      res.render("profile.ejs", { posts, user: req.user, username: username, postCount: postCount })
     } catch (err) {
       console.log(err);
     }
@@ -157,4 +160,11 @@ module.exports = {
       console.log(err);
     }
   },
+  // getPostCount: async (req, res) => {
+  //   try {
+  //     const posts = await Post.find({ user: req.params.userId });  
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
 };
