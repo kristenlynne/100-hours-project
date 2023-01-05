@@ -11,6 +11,7 @@ router.get("/profile/user/:userId", ensureAuth, postsController.getProfile);
 router.get("/addpost", ensureAuth, postsController.getAddPost);
 router.get("/feed", ensureAuth, postsController.getFeed);
 router.put("/feed/likePost/:id", postsController.likePostOnFeed);
+router.get("/bookmarks", postsController.getBookmarks); // WIP
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);

@@ -37,15 +37,19 @@ const PostSchema = new mongoose.Schema({
   },
   genres: {
     type: String,
-    required: true,
+    required: false,
   },
   bookDescription: {
     type: String,
-    required: true,
+    required: false,
   },
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  bookmarks: {
+    type: Array,
+    required: true,
   },
 });
 

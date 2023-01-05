@@ -15,12 +15,23 @@
               action="/feed/likePost/<%= posts[i]._id %>?_method=PUT"
               method="POST"
             >
-          <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
-          <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
-        </form>
-
+            <button class="fa fa-heart pr-2" type="submit"> <%= posts[i].likes %></button>
+            <a href="/post/<%= posts[i]._id%>#comment"><i class="fa-regular fa-comment"></i></a>
+            </form>
           </div>
-          <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+
+          <!-- bookmark -->
+          <div>
+            <form
+            class="col justify-content-end"
+            action="/post/bookmarkPost/<%= posts[i]._id %>?_method=PUT"
+            method="POST">
+      
+            <button class="<% if (posts[i].bookmarks.includes(user.id)){ %> fa solid fa-bookmark<%} else { %> fa-regular fa-bookmark <% }%>" type="submit"></button>
+
+            </form>
+          </div>
+
         </div>
       
         <div class="mt-3">

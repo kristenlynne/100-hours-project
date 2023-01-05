@@ -1,0 +1,23 @@
+<%- include('partials/loggedinheader') -%>
+
+<div class="container">
+  <h1>My Bookmarks</h1>
+  <% console.log(posts) %> 
+  <div class="">
+    <% for(let i = 0; i < posts.length; i++) {%>
+      <%if(posts[i].bookmarks.includes(user.id)) {%>
+      <div class="">
+        <img src="<%= posts[i].image%>" class="" alt="...">
+        <div class="">
+          <h5 class=""><%= posts[i].bookTitle%></h5>
+          <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">View Post</a>
+        </div>
+      </div>
+    <% } %>
+    <% } %>
+  </div>
+  
+</div>
+
+
+<%- include('partials/footer') -%>
