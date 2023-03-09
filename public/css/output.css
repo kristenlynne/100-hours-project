@@ -1760,6 +1760,21 @@ html {
   padding: 0px;
 }
 
+.avatar.online:before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  display: block;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--su) / var(--tw-bg-opacity));
+  width: 15%;
+  height: 15%;
+  top: 7%;
+  right: 7%;
+  box-shadow: 0 0 0 2px hsl(var(--b1));
+}
+
 .btn-group .btn:not(:first-child):not(:last-child), .btn-group.btn-group-horizontal .btn:not(:first-child):not(:last-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -1852,12 +1867,12 @@ html {
   margin-top: 0.75rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
-.mb-32 {
-  margin-bottom: 8rem;
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mt-2 {
@@ -1870,10 +1885,6 @@ html {
 
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
 }
 
 .mr-1 {
@@ -1890,6 +1901,10 @@ html {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .block {
@@ -1910,6 +1925,10 @@ html {
 
 .h-96 {
   height: 24rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-12 {
@@ -1948,8 +1967,9 @@ html {
   max-width: 28rem;
 }
 
-.max-w-sm {
-  max-width: 24rem;
+.max-w-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .max-w-xs {
@@ -2112,6 +2132,10 @@ html {
   padding-right: 0.5rem;
 }
 
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -2247,9 +2271,27 @@ html {
   .sm\:self-center {
     align-self: center;
   }
+
+  .sm\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 @media (min-width: 768px) {
+  .md\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .md\:mt-12 {
+    margin-top: 3rem;
+  }
+
+  .md\:mb-32 {
+    margin-bottom: 8rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -2258,8 +2300,17 @@ html {
     display: none;
   }
 
+  .md\:h-max {
+    height: -moz-max-content;
+    height: max-content;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
+  }
+
+  .md\:max-w-sm {
+    max-width: 24rem;
   }
 
   .md\:flex-row {
@@ -2276,6 +2327,10 @@ html {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
+  .md\:pt-0 {
+    padding-top: 0px;
+  }
+
   .md\:text-left {
     text-align: left;
   }
@@ -2286,6 +2341,16 @@ html {
   }
 }
 
+@media (min-width: 976px) {
+  .lg\:pr-10 {
+    padding-right: 2.5rem;
+  }
+
+  .lg\:pl-0 {
+    padding-left: 0px;
+  }
+}
+
 @media (min-width: 1440px) {
   .xl\:max-h-96 {
     max-height: 24rem;
@@ -2293,5 +2358,10 @@ html {
 
   .xl\:w-96 {
     width: 24rem;
+  }
+
+  .xl\:max-w-fit {
+    max-width: -moz-fit-content;
+    max-width: fit-content;
   }
 }
