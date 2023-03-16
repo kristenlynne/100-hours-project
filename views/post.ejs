@@ -5,7 +5,7 @@
 
 <div class="container justify-center mx-auto items-center">
   <div class="flex justify-between container">
-    <a href="/profile/user/<%= post.user %>" class="text-lg font-bold"><i class="fa-solid fa-circle-user"></i> <%= username %></a> <!-- TODO: add link to user profile -->
+    <a href="/profile/<%= username %>" class="text-lg font-bold"><i class="fa-solid fa-circle-user"></i> <%= username %></a>
   <%if(post.user == user.id){ %>
     <form
       action="/post/deletePost/<%= post.id %>?_method=DELETE"
@@ -38,7 +38,7 @@
       </div>
       <!-- Caption Div -->
       <div class="mt-5">
-        <p><b><a href="/profile/user/<%= post.user %>"><%= username %></a></b> <%= post.caption %></p>
+        <p><b><a href="/profile/<%= username %>"><%= username %></a></b> <%= post.caption %></p>
       </div>
     </div> 
 
@@ -57,7 +57,7 @@
     <ul>
       <% for(var i=0; i<comments.length; i++) {%>
       <li class="flex flex-row mt-5">
-        <a href="/profile/user/<%= comments[i].createdById %>"><b><%= comments[i].createdBy %></b></a> &nbsp; <%= comments[i].comment%> &nbsp;&nbsp;
+        <a href="/profile/<%= comments[i].createdBy %>"><b><%= comments[i].createdBy %></b></a> &nbsp; <%= comments[i].comment%> &nbsp;&nbsp;
 
             <div class="flex flex-row">
               <form class="" action="/comment/likeComment/<%= post.id %>/<%= comments[i]._id %>?_method=PUT" method="POST">

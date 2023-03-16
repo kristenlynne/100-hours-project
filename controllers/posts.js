@@ -4,20 +4,35 @@ const Comment = require("../models/Comment");
 const User = require("../models/User");
 
 module.exports = {
-  getProfile: async (req, res) => {
+    getProfile: async (req, res) => {
     try {
-      const user = await Post.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean(); // posts of logged in user
-      const posts = await Post.find({ user: req.params.userId }).populate('user').sort({ createdAt: "desc" }).lean(); // posts by userId
-
-      const postCount = await Post.find({ user: req.params.userId }).countDocuments()
-
-      const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
-      const username = getUserInfo.userName // gets username from user object
-      res.render("profile.ejs", { posts, user: req.user, username: username, postCount: postCount })
+      const getUserInfo = await User.findOne({ userName: req.params.userName });
+      const userId = getUserInfo._id;
+      const posts = await Post.find({ user: userId }).populate('user').sort({ createdAt: "desc" }).lean();
+      const postCount = await Post.find({ user: userId }).countDocuments();
+      res.render("profile.ejs", { posts, user: req.user, username: getUserInfo.userName, postCount: postCount });
     } catch (err) {
       console.log(err);
     }
   },
+
+  // original logic for my getProfile method
+
+  // getProfile: async (req, res) => {
+  //   try {
+  //     const user = await Post.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean(); // posts of logged in user
+  //     const posts = await Post.find({ user: req.params.userId }).populate('user').sort({ createdAt: "desc" }).lean(); // posts by userId
+
+  //     const postCount = await Post.find({ user: req.params.userId }).countDocuments()
+
+  //     const getUserInfo = await User.findById(req.params.userId) // finds user info from userId in params
+  //     const username = getUserInfo.userName // gets username from user object
+  //     res.render("profile.ejs", { posts, user: req.user, username: username, postCount: postCount })
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
+
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
@@ -58,9 +73,13 @@ module.exports = {
         likes: 0,
         user: req.user.id,
       });
+
+      const user = await User.findById(req.user.id).lean();
+      const userName = user.userName;
+
       console.log("Post has been added!");
       // res.render("addpost.ejs")
-      res.redirect(`/profile/user/${req.user.id}`);
+      res.redirect(`/profile/${userName}`);
     } catch (err) {
       console.log(err);
     }
@@ -95,6 +114,8 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     try {
+      const user = await User.findById(req.user.id).lean();
+      const userName = user.userName;
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
@@ -102,9 +123,9 @@ module.exports = {
       // Delete post from db
       await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect(`/profile/user/${req.user.id}`);
+      res.redirect(`/profile/${userName}`);
     } catch (err) {
-      res.redirect(`/profile/user/${req.user.id}`);
+      res.redirect(`/profile/${userName}`);
     }
   },
   getAddPost: async (req, res) => {
