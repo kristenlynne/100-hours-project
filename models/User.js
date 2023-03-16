@@ -7,6 +7,8 @@ const UserSchema = new mongoose.Schema({
   firstName: { type: String, unique: false },
   lastName: { type: String, unique: false },
   password: String,
+  profilePictureUrl: { type: String, default: null },
+  createdAt: { type: Date, default: Date.now },
 });
 
 // Password hash middleware.

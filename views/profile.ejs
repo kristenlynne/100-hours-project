@@ -3,13 +3,12 @@ TODO:
 - I want the images to get larger or smaller with screen size... need to figure out how to implement this.
 - need to add edit my profile button so user can add profile picture and caption to their profile
 --- caption will need to have a word count limit to it
-- need to write function to get number of posts user has and display it in DOM
 - need to create followers / following functions (will implement this after MVP) 
 -->
 
 <!-- 
 BUG:
-- when looking at profile of other users (not the logged in user) the image size is not being adjusted properly, it should be a square but it's like the classes aren't working... when logged into that user it does the same thing... so idk man. bizarre...
+- images that are landscape are not being cropped to show as squares.
 -->
 
 <%- include('partials/loggedinheader') -%>
@@ -17,7 +16,15 @@ BUG:
 <div class="container mx-auto">
 
     <div class="flex flex-row mx-auto mb-8 py-5 justify-center border-b-2 border-gray-700">
-      <div class="text-7xl"><i class="fa-solid fa-circle-user"></i></div>
+
+      <div class="w-32">
+        <% if (user.profilePictureUrl) { %>
+          <img src="<%= user.profilePictureUrl %>" alt="<%= user.name %>'s profile picture" class="w-32"> 
+          <% } else { %>
+            <img src="https://res.cloudinary.com/dzjyle2lm/image/upload/v1678921753/defaultuserpic.png" alt="Default profile picture" class="w-32 rounded-full border-2 border-white">
+            <% } %>
+      </div>
+
       <div class="pl-8">
           <h3 class="font-bold"><%= username %></h3>
           <ul class="flex flex-row">
