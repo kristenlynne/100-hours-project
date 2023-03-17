@@ -1,0 +1,35 @@
+<%- include('partials/loggedinheader') -%>
+
+<div class="">
+  <div class="container mx-auto w-1/2 flex flex-col justify-center px-8 pb-8 rounded-lg my-8 bg-base-200">
+    <h1 class="font-bold text-4xl text-center my-6">Edit Profile</h1>
+
+    <form action="/updateProfile" enctype="multipart/form-data" method="POST" class="container w-full">
+
+      <div class="mb-3">
+        <label for="file" class="form-label">Profile Picture</label>
+        <input type="file" class="form-control block w-full text-md text-gray-700
+        file:mr-4 file:py-2 file:px-4
+        file:rounded-lg file:border-0
+        file:text-sm file:font-semibold
+        file:bg-secondary file:text-secondary-content
+        hover:file:bg-secondary-focus" id="" name="file">
+      </div>
+    
+      <div class="mb-3">
+        <label for="caption" class="form-label">Caption</label>
+        <textarea class="form-control textarea textarea-bordered textarea-primary w-full" id="caption" name="caption"> <%= user.caption%> </textarea>
+      </div>
+      
+
+
+      <div class="flex justify-center">
+        <button type="submit" class="btn btn-primary" value="Update">Update Profile</button>
+      </div>
+    
+    </form>
+  </div>
+  
+</div>
+
+<%- include('partials/footer') -%>

@@ -13,26 +13,40 @@ BUG:
 
 <%- include('partials/loggedinheader') -%>
 
-<div class="container mx-auto">
+<div class="container flex flex-col justify-between relative w-full mx-auto min-h-screen max-h-fit">
 
-    <div class="flex flex-row mx-auto mb-8 py-5 justify-center border-b-2 border-gray-700">
+    <div class="flex flex-row mx-auto mb-8 py-5 w-full justify-center border-b-2 border-gray-700">
 
       <div class="w-32">
-        <% if (user.profilePictureUrl) { %>
-          <img src="<%= user.profilePictureUrl %>" alt="<%= user.name %>'s profile picture" class="w-32"> 
-          <% } else { %>
-            <img src="https://res.cloudinary.com/dzjyle2lm/image/upload/v1678921753/defaultuserpic.png" alt="Default profile picture" class="w-32 rounded-full border-2 border-white">
-            <% } %>
+
+        <% if (user && (user.userName === username)) { %>
+          <img src="<%= user.profilePictureUrl.url %>" alt="<%= user.name %>'s profile picture" class="w-32 h-32 rounded-full">
+        <% } else { %>
+          <img src="<%= getUserInfo.profilePictureUrl.url %>" alt="<%= getUserInfo.name %>'s profile picture" class="w-32 h-32 object-cover rounded-full">
+        <% } %>
+          
+
       </div>
 
       <div class="pl-8">
           <h3 class="font-bold"><%= username %></h3>
           <ul class="flex flex-row">
             <li class="pr-8"><%= postCount %> posts</li>
-            <!-- <li class="pr-8">8 followers</li> -->
+            <!-- <li class="pr-8">8 followers</li> --> 
             <!-- <li>35 following</li> -->
           </ul>
-          <p>lorem ipsum dolar i am a caption the user will add to their profile</p>
+          <div class="">
+            <% if (username == user.userName) { %>
+              <p><%= user.caption %></p>
+            <% } else { %>
+              <p><%= getUserInfo.caption %></p>
+            <% } %>
+          </div>
+
+
+          <% if(user.userName == username){ %>
+            <a href="/editprofile" class="btn" type="submit">Edit Profile</a>
+          <%}%>
       </div>
     </div>
 
@@ -48,8 +62,8 @@ BUG:
 
       </div> 
 
-      <div class="flex justify-center mt-5">
-        <a class="btn btn-primary" href="/feed"> Back to Feed</a>
+      <div class="flex items-center justify-end w-full my-5 bottom-0">
+        <a class="btn btn-primary mx-auto" href="/feed"> Back to Feed</a>
       </div>  
 
 </div> 

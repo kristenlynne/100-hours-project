@@ -6,11 +6,12 @@ const User = require("../models/User");
 module.exports = {
     getProfile: async (req, res) => {
     try {
+      console.log("getProfile method called");
       const getUserInfo = await User.findOne({ userName: req.params.userName });
       const userId = getUserInfo._id;
       const posts = await Post.find({ user: userId }).populate('user').sort({ createdAt: "desc" }).lean();
       const postCount = await Post.find({ user: userId }).countDocuments();
-      res.render("profile.ejs", { posts, user: req.user, username: getUserInfo.userName, postCount: postCount });
+      res.render("profile.ejs", { posts, user: req.user, username: getUserInfo.userName, postCount: postCount, getUserInfo: getUserInfo});
     } catch (err) {
       console.log(err);
     }
@@ -181,11 +182,4 @@ module.exports = {
       console.log(err);
     }
   },
-  // getPostCount: async (req, res) => {
-  //   try {
-  //     const posts = await Post.find({ user: req.params.userId });  
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
 };

@@ -7,7 +7,10 @@ const UserSchema = new mongoose.Schema({
   firstName: { type: String, unique: false },
   lastName: { type: String, unique: false },
   password: String,
-  profilePictureUrl: { type: String, default: null },
+  profilePictureUrl: { 
+    type: mongoose.Schema.Types.Mixed, 
+    default: { url: "https://res.cloudinary.com/dzjyle2lm/image/upload/v1678921753/defaultuserpic.png" } },
+  caption: { type: String, default: null },
   createdAt: { type: Date, default: Date.now },
 });
 

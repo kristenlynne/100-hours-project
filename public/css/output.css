@@ -1816,6 +1816,10 @@ html {
   position: relative;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .left-6 {
   left: 1.5rem;
 }
@@ -1925,6 +1929,10 @@ html {
   height: 100%;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -1933,8 +1941,17 @@ html {
   max-height: 24rem;
 }
 
+.max-h-fit {
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+
 .max-h-72 {
   max-height: 18rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-1\/2 {
@@ -2071,11 +2088,6 @@ html {
 .border-gray-700 {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
-}
-
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-base-200 {
